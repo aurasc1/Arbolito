@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="esn">
+
+<head>
+
+    <style>
+        
+        #arbol {
+            width: 400px;
+            position: relative;
+            margin: 10% auto 20px;
+            transform-style: preserve-3d;
+            transform-origin: top center;
+            transition: 0.6s;
+        }
+        .hoja {
+            width: 15px;
+            height: 15px;
+            background-color: #188b03;
+            display: inline-block;
+            /*para tratar a cada hoja como un elemento de linea y poder centrarlo*/
+        }
+        
+        .hoja1 {
+            width: 15px;
+            height: 15px;
+            background-color: #006703;
+            display: inline-block;
+            /*para tratar a cada hoja como un elemento de linea y poder centrarlo*/
+        }
+        .hoja2 {
+            width: 15px;
+            height: 15px;
+            background-color: #052c06;
+            display: inline-block;
+            /*para tratar a cada hoja como un elemento de linea y poder centrarlo*/
+        }
+        br {
+            content: "";
+            margin: -.3em;
+            display: block;
+        }
+        #arbol .tronco1 {
+            border-color: brown transparent;
+            border-style: solid;
+            border-width: 0 15px 130px;
+            /* top: 3px; */
+            /* left: 50%; */
+            height: 0px;
+            width: 0;
+            margin-top: -100px;
+            z-index: -99;
+        }
+        #arbol .estrella {
+            color: yellow;
+            position: absolute;
+            z-index: 1000000;
+            left: 45%;
+            top: -48px;
+            animation: brilla-estrellita 10s infinite ease-in-out;
+            font-size: 3em;
+        }
+
+        #arbol .regalos {
+            width: 40px;
+            height: 40px;
+            /* position: absolute; */
+            z-index: -1;
+            transition: all 500ms ease-in;
+        }
+        #arbol .regalo1 {
+            background: pink;
+            /* bottom: -5px; */
+            /* left: 4px; */
+            margin-right: 80px;
+            margin-top: -40px;
+        }
+        #arbol .regalo2 {
+            background: #00B8FF;
+            /* bottom: -5px; */
+            /* right: 0px; */
+            margin-left: 80px;
+            margin-top: -40px;
+        }
+        #arbol .regalo3 {
+            width: 25px;
+            height: 25px;
+            background: #FF002F;
+            /* bottom: -5px; */
+            /* right: 22px; */
+            margin-right: 120px;
+            margin-top: -24px;
+        }
+        #arbol .regalo4 {
+            width: 25px;
+            height: 25px;
+            background: #B400FF;
+            /* bottom: -5px; */
+            /* right: 22px; */
+            margin-left: 120px;
+            margin-top: -26px;
+        }
+        #arbol .luces {
+            height: 3px;
+            width: 3px;
+            background: #FFF;
+/*            position: absolute;*/
+            border-radius: 100%;
+        }
+        #arbol .luz1 {
+            top: 8px; */
+            /* left: 2px; */
+            position: absolute;
+            animation: brillos 1s 1s infinite ease-in-out;
+        }
+        
+
+
+        #arbol:hover .estrella {
+            animation: giro 500ms 1000ms 1 ease-in-out;
+        }
+        #arbol:hover #hojas {
+            animation: giro 500ms 600ms 1 ease-in-out;
+        }
+        #arbol:hover .regalo1 {
+            margin-right: 150px;
+            transform: rotate(-90deg);
+        }
+        #arbol:hover .regalo2 {
+            margin-left: 100px;
+            transform: rotate(90deg);
+        }
+        #arbol:hover .regalo3 {
+            margin-right: 250px;
+            transform: rotate(-180deg);
+        }
+        #arbol:hover .regalo4 {
+            margin-left: 180px;
+            transform: rotate(180deg);
+        }
+
+        
+        
+        
+            body {
+                background: #000;
+            }
+
+            @keyframes brilla-estrellita {
+                0% {
+                    opacity: 0.5;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0.5;
+                }
+            }
+            @keyframes brillos {
+                0% {
+                    opacity: 0.5;
+                }
+                50% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0.5;
+                }
+            }
+            @keyframes giro {
+                0% {
+                    transform: rotateY(0deg);
+                }
+                50% {
+                    transform: rotateY(180deg);
+                }
+                100% {
+                    transform: rotateY(0deg);
+                }
+            }
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+
+    <div id="arbol">
+        <center>
+            <div class="estrella">&#9733;</div>
+            
+            <div id="hojas">
+
+            <script>
+                //ESTA VARIABLE  "NIVEL" CONTROLA LAS RAMIFICACIONES DEL ARBOLITO
+                //                       PRIMER VALOR * ES EL NUMERO POR EL CUAL SE MULTIPLICARA CADA NIVEL DEL ARBOL
+                //                       +1 ES OTRO NIVEL QUE SE LE AGREGARA AL ARBOL DE FORMA ALEATORIA
+                var nivel = Math.random() *3+1;
+
+                var Length = Math.round(nivel)
+                var width = 1; //ESTA VARIABLE DETERMINA CON QUE VALOR INICIARA EL ARBOL
+
+                for (i = 0; i <= Length; i++)
+                {
+                    for (x = 0; x <= 4; x++) //Numero de filas que se agregaran a cada nivel
+                    {
+                        for (y = 1; y <= width; y++) //Ancho entre cada elemento y numero con el cual iniciara el primer elemento
+                        {
+                            var Newnumero = Math.random() *4; //SIRVE PARA PODER AGREGAR MAS VARIANTES DE COLOR AL ARBOL
+                            var hojas = Math.round(Newnumero);
+                            if (hojas <= 1)
+                            {
+                                document.write('<div class="hoja"><div class="luces luz1"></div></div>');
+                            }if (hojas >= 2) {
+                                document.write('<div class="hoja"></div>');
+                            }
+                        }
+                        document.write('<br>');
+                        var width = width +1;
+                    }
+                    var width = width -3;
+                }
+            </script>
+            </div>
+            <div class="tronco1"></div>
+            <div class="regalos regalo1"></div>
+            <div class="regalos regalo2"></div>
+            <div class="regalos regalo3"></div>
+            <div class="regalos regalo4"></div>
+        </center>
+    </div>
+
+
+</body>
+
+</html>
